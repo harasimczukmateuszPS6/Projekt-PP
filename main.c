@@ -70,6 +70,10 @@ void newInvention(struct invention tab[], int *number) {
     printf("Reliability level (0 - 100): \n");
     tab[*number].reliability = valueCheck();
 
+    printf("Invention status: \n");
+    printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
+    tab[*number].status = typeCheck();
+
 
     (*number)++;
     printf("Invention added to database.\n");
@@ -90,13 +94,12 @@ int main()
     }
     printf("1 - Register new invention.\n");
     printf("0 - Terminate program.\n");
-    printf("\nChoose your option:\n");
 
     struct invention tab[MAX];
     int number = 0;
     int option;
     do {
-        printf("> ");
+        printf("\nChoose your option: \n> ");
         scanf("%d", &option);
         switch (option) {
             case 1: {
