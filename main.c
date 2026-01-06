@@ -2,7 +2,9 @@
 #include <stdlib.h>
 
 struct invention {
-
+    char name[101];
+    char type[];
+    int reliability;
 };
 
 int main()
