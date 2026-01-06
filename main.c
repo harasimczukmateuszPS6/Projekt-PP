@@ -43,6 +43,17 @@ void enterName(char *name) {
     }
 }
 
+int valueCheck() {
+    int n;
+    while(1) {
+        printf("> ");
+        scanf("%d", &n);
+        if(n >= 0 && n <= 100)
+            return n;
+        printf("Invalid value! Try again: \n");
+    }
+}
+
 void newInvention(struct invention tab[], int *number) {
     if(*number >= MAX) {
         printf("No memory left!\n");
@@ -54,8 +65,10 @@ void newInvention(struct invention tab[], int *number) {
 
     printf("Invention type: \n");
     printf("1 - mechanical\n2 - chemical\n3 - energetic\n4 - quantum\n5 - steam\n\n");
-
     tab[*number].type = typeCheck();
+
+    printf("Reliability level (0 - 100): \n");
+    tab[*number].reliability = valueCheck();
 
 
     (*number)++;
