@@ -22,6 +22,17 @@ int nameCheck(char *name) {
     return 1;
 }
 
+int typeCheck() {
+    int n;
+    while(1) {
+        printf("> ");
+        scanf("%d", &n);
+        if(n == 1 || n == 2 || n == 3 || n == 4 || n == 5)
+            return n;
+        printf("Invalid entry! Try again: \n");
+    }
+}
+
 void enterName(char *name) {
     while(1) {
         printf("\n> ");
@@ -40,6 +51,12 @@ void newInvention(struct invention tab[], int *number) {
 
     printf("Enter name: \n");
     enterName(tab[*number].name);
+
+    printf("Invention type: \n");
+    printf("1 - mechanical\n2 - chemical\n3 - energetic\n4 - quantum\n5 - steam\n\n");
+
+    tab[*number].type = typeCheck();
+
 
     (*number)++;
     printf("Invention added to database.\n");
