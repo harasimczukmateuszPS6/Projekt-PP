@@ -19,11 +19,33 @@ int main()
     printf("Do you want to proceed? (Y/N): \n> ");
     scanf("%c", &proceed);
     if (proceed == 'y' || proceed == 'Y') {
-        printf("\nLoading...\n");
+        printf("\nLoading...\n\n");
     } else {
         printf("\nTERMINATING...");
         return 0;
     }
+    printf("1 - Register new invention.\n");
+    printf("0 - Terminate program.\n");
+    printf("\nChoose your option:\n");
+
+    int option;
+    do {
+        printf("> ");
+        scanf("%d", &option);
+        switch (option) {
+            case 1: {
+                break;
+            }
+            case 0: {
+                printf("TERMINATING...");
+                break;
+            }
+            default: {
+                printf("Unknown option. Try again.\n");
+                break;
+            }
+        }
+    } while(option != 0);
 
 
     return 0;
