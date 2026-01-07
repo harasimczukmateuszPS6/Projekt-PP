@@ -10,7 +10,7 @@ struct invention {
     char name[101];
     int type;
     int reliability;
-    int powerneeded;
+    int energydemand;
     int status;
 };
 
@@ -69,6 +69,9 @@ void newInvention(struct invention tab[], int *number) {
 
     printf("Reliability level (0 - 100): \n");
     tab[*number].reliability = valueCheck();
+
+    printf("Energy demand (0 - 100): \n");
+    tab[*number].energydemand = valueCheck();
 
     printf("Invention status: \n");
     printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
