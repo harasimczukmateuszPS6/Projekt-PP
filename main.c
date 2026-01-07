@@ -83,6 +83,23 @@ void newInvention(struct invention tab[], int *number) {
 
 }
 
+int invFind(struct invention tab[], int number, char *name) {
+    for(int i = 0; i < number; i++) {
+        if(strcmp(tab[i].name, name) == 0)
+            return i;
+    }
+    return -1;
+}
+
+void invList(struct invention tab[], int number) {
+    struct invention list[MAX];
+    int listNumber = 0;
+
+    for (int i = 0; i < number; i++) {
+
+    }
+}
+
 int main()
 {
     char proceed;
