@@ -92,11 +92,10 @@ int invFind(struct invention tab[], int number, char *name) {
 }
 
 void invList(struct invention tab[], int number) {
-    struct invention list[MAX];
-    int listNumber = 0;
 
+    printf("\nALL REGISTERED INVENTIONS:\n\n");
     for (int i = 0; i < number; i++) {
-
+        printf("%d. %s:\n", i + 1, tab[i].name);
     }
 }
 
@@ -127,6 +126,7 @@ int main()
                 break;
             }
             case 2: {
+                invList(tab, number);
                 break;
             }
             case 3: {
