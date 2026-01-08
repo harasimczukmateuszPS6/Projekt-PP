@@ -91,11 +91,40 @@ int invFind(struct invention tab[], int number, char *name) {
     return -1;
 }
 
+void invPrint(struct invention tab[], int number) {
+
+    printf("%d. %s:\n", number + 1, tab[number].name);
+    if(tab[number].type == 1)
+        printf("Type: mechanical\n");
+    else if(tab[number].type == 2)
+            printf("Type: chemical\n");
+        else if(tab[number].type == 3)
+                printf("Type: energetic\n");
+            else if(tab[number].type == 4)
+                    printf("Type: quantum\n");
+                else if(tab[number].type == 5)
+                        printf("Type: steam\n");
+    printf("Reliability: %d%%\n", tab[number].reliability);
+    printf("Energy demand: %d%%\n", tab[number].energydemand);
+    if(tab[number].status == 1)
+        printf("Status: prototype\n");
+    else if(tab[number].status == 2)
+            printf("Status: testing\n");
+        else if(tab[number].status == 3)
+                printf("Status: admissible\n");
+            else if(tab[number].status == 4)
+                    printf("Status: forbidden\n");
+                else if(tab[number].status == 5)
+                        printf("Status: unstable\n");
+
+
+}
+
 void invList(struct invention tab[], int number) {
 
     printf("\nALL REGISTERED INVENTIONS:\n\n");
     for (int i = 0; i < number; i++) {
-        printf("%d. %s:\n", i + 1, tab[i].name);
+        invPrint(tab, i);
     }
 }
 
@@ -112,6 +141,7 @@ int main()
         return 0;
     }
     printf("1 - Register new invention.\n");
+    printf("2 - Show the list.\n");
     printf("0 - Terminate program.\n");
 
     struct invention tab[MAX];
