@@ -83,13 +83,16 @@ void newInvention(struct invention tab[], int *number) {
 
 }
 
-int invFind(struct invention tab[], int number, char *name) {
+int invFind(struct invention tab[], int number) {
+    char name[101];
+    scanf("%100s", &name);
     for(int i = 0; i < number; i++) {
         if(strcmp(tab[i].name, name) == 0)
             return i;
     }
     return -1;
 }
+
 
 void invPrint(struct invention tab[], int number) {
 
@@ -161,6 +164,11 @@ int main()
                 break;
             }
             case 3: {
+                int sNumber = invFind(tab, number);
+                if(sNumber == -1) {
+                    printf("Invention not found!\n");
+                } else
+                    invPrint(tab, sNumber);
 
                 break;
             }
