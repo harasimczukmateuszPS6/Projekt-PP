@@ -16,7 +16,7 @@ struct invention {
 
 int nameCheck(char *name) {
     for(int i = 0; name[i]; i++) {
-        if(!isalpha(name[i]))
+        if (!isalpha(name[i]) && name[i] != '_' && name[i] != '-')
             return 0;
     }
     return 1;
@@ -36,7 +36,7 @@ int typeCheck() {
 void enterName(char *name) {
     while(1) {
         printf("\n> ");
-        scanf("%100s", name);
+        scanf("%s", name);
         if(nameCheck(name))
             return;
         printf("Invalid entry! Try again:\n");
@@ -85,7 +85,7 @@ void newInvention(struct invention tab[], int *number) {
 
 int invFind(struct invention tab[], int number) {
     char name[101];
-    scanf("%100s", &name);
+    scanf("%s", name);
     for(int i = 0; i < number; i++) {
         if(strcmp(tab[i].name, name) == 0)
             return i;
@@ -175,7 +175,10 @@ int main()
     int option;
     do {
         printf("\nChoose your option: \n> ");
-        scanf("%d", &option);
+        while (scanf("%d", &option) != 1) {
+            printf("Invalid input! Enter a number:\n> ");
+            while (getchar() != '\n');
+        }
         switch (option) {
             case 1: {
                 newInvention(tab, &number);
