@@ -96,7 +96,7 @@ int invFind(struct invention tab[], int number) {
 
 void invPrint(struct invention tab[], int number) {
 
-    printf("%d. %s:\n", number + 1, tab[number].name);
+    printf("%s:\n", tab[number].name);
     if(tab[number].type == 1)
         printf("Type: mechanical\n");
     else if(tab[number].type == 2)
@@ -127,8 +127,28 @@ void invList(struct invention tab[], int number) {
 
     printf("\nALL REGISTERED INVENTIONS:\n\n");
     for (int i = 0; i < number; i++) {
+        printf("%d. ", i + 1);
         invPrint(tab, i);
     }
+}
+
+void invMod(struct invention tab[], int number) {
+
+    printf("Invention type: \n");
+    printf("1 - mechanical\n2 - chemical\n3 - energetic\n4 - quantum\n5 - steam\n\n");
+    tab[number].type = typeCheck();
+
+    printf("Reliability level (0 - 100): \n");
+    tab[number].reliability = valueCheck();
+
+    printf("Energy demand (0 - 100): \n");
+    tab[number].energydemand = valueCheck();
+
+    printf("Invention status: \n");
+    printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
+    tab[number].status = typeCheck();
+
+    printf("\nData modified successfully!\n\n");
 }
 
 
@@ -146,6 +166,8 @@ int main()
     }
     printf("1 - Register new invention.\n");
     printf("2 - Show the list.\n");
+    printf("3 - Search for invention.\n");
+    printf("4 - Modify invention data.\n");
     printf("0 - Terminate program.\n");
 
     struct invention tab[MAX];
@@ -164,11 +186,22 @@ int main()
                 break;
             }
             case 3: {
+                printf("Search:\n> ");
                 int sNumber = invFind(tab, number);
                 if(sNumber == -1) {
                     printf("Invention not found!\n");
                 } else
                     invPrint(tab, sNumber);
+
+                break;
+            }
+            case 4: {
+                printf("Enter invention name:\n> ");
+                int mNumber = invFind(tab, number);
+                if(mNumber == -1) {
+                    printf("Invention not found!\n");
+                } else
+                    invMod(tab, mNumber);
 
                 break;
             }
