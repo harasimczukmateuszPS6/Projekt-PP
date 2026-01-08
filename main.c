@@ -128,6 +128,7 @@ void invList(struct invention tab[], int number) {
     }
 }
 
+
 int main()
 {
     char proceed;
@@ -160,6 +161,7 @@ int main()
                 break;
             }
             case 3: {
+
                 break;
             }
             case 0: {
