@@ -30,6 +30,14 @@ struct invention {
     invStatus status;
 };
 
+const char *typeNames[] = {
+    "", "mechanical", "chemical", "energetic", "quantum", "steam"
+};
+
+const char *statusNames[] = {
+    "", "prototype", "testing", "admissible", "forbidden", "unstable"
+};
+
 int nameCheck(char *name) {
     for(int i = 0; name[i]; i++) {
         if (!isalpha(name[i]) && name[i] != '_' && name[i] != '-')
@@ -113,28 +121,10 @@ int invFind(struct invention tab[], int number) {
 void invPrint(struct invention tab[], int number) {
 
     printf("%s:\n", tab[number].name);
-    if(tab[number].type == 1)
-        printf("Type: mechanical\n");
-    else if(tab[number].type == 2)
-            printf("Type: chemical\n");
-        else if(tab[number].type == 3)
-                printf("Type: energetic\n");
-            else if(tab[number].type == 4)
-                    printf("Type: quantum\n");
-                else if(tab[number].type == 5)
-                        printf("Type: steam\n");
+    printf("Type: %s\n", typeNames[tab[number].type]);
     printf("Reliability: %d%%\n", tab[number].reliability);
     printf("Energy demand: %d%%\n", tab[number].energydemand);
-    if(tab[number].status == 1)
-        printf("Status: prototype\n");
-    else if(tab[number].status == 2)
-            printf("Status: testing\n");
-        else if(tab[number].status == 3)
-                printf("Status: admissible\n");
-            else if(tab[number].status == 4)
-                    printf("Status: forbidden\n");
-                else if(tab[number].status == 5)
-                        printf("Status: unstable\n");
+    printf("Status: %s\n", statusNames[tab[number].status]);
 
 
 }
