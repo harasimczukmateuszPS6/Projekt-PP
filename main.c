@@ -6,12 +6,28 @@
 
 #define MAX 500
 
+typedef enum {
+    MECHANICAL = 1,
+    CHEMICAL,
+    ENERGETIC,
+    QUANTUM,
+    STEAM
+} invType;
+
+typedef enum {
+    PROTOTYPE = 1,
+    TESTING,
+    ADMISSIBLE,
+    FORBIDDEN,
+    UNSTABLE
+} invStatus;
+
 struct invention {
     char name[101];
-    int type;
+    invType type;
     int reliability;
     int energydemand;
-    int status;
+    invStatus status;
 };
 
 int nameCheck(char *name) {
