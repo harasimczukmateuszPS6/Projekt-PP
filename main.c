@@ -4,7 +4,7 @@
 #include <ctype.h>
 #include <math.h>
 
-#define MAX 100
+#define MAX 500
 
 struct invention {
     char name[101];
@@ -151,6 +151,19 @@ void invMod(struct invention tab[], int number) {
     printf("\nData modified successfully!\n\n");
 }
 
+void invDel(struct invention tab[], int *number) {
+    int rNumber = invFind(tab, *number);
+    if(rNumber == -1) {
+        printf("Invention not found!\n");
+        return;
+    }
+    for(int i = rNumber; i < *number - 1; i++) {
+        tab[i] = tab[i + 1];
+    }
+    (*number)--;
+    printf("\nData removed successfully!\n\n");
+}
+
 
 int main()
 {
@@ -168,6 +181,7 @@ int main()
     printf("2 - Show the list.\n");
     printf("3 - Search for invention.\n");
     printf("4 - Modify invention data.\n");
+    printf("5 - Remove invention data.\n");
     printf("0 - Terminate program.\n");
 
     struct invention tab[MAX];
@@ -208,6 +222,13 @@ int main()
 
                 break;
             }
+
+            case 5: {
+                printf("Enter invention name:\n> ");
+                invDel(tab, &number);
+                break;
+            }
+
             case 0: {
                 printf("TERMINATING...");
                 break;
