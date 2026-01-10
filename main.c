@@ -67,12 +67,12 @@ void enterName(char *name) {
     }
 }
 
-int valueCheck() {
+int valueCheck(int min, int max) {
     int n;
     while(1) {
         printf("> ");
         scanf("%d", &n);
-        if(n >= 0 && n <= 100)
+        if(n >= min && n <= max)
             return n;
         printf("Invalid value! Try again: \n");
     }
@@ -92,10 +92,10 @@ void newInvention(struct invention tab[], int *number) {
     tab[*number].type = typeCheck();
 
     printf("Reliability level (0 - 100): \n");
-    tab[*number].reliability = valueCheck();
+    tab[*number].reliability = valueCheck(0, 100);
 
     printf("Energy demand (0 - 100): \n");
-    tab[*number].energydemand = valueCheck();
+    tab[*number].energydemand = valueCheck(0, 100);
 
     printf("Invention status: \n");
     printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
@@ -145,10 +145,10 @@ void invMod(struct invention tab[], int number) {
     tab[number].type = typeCheck();
 
     printf("Reliability level (0 - 100): \n");
-    tab[number].reliability = valueCheck();
+    tab[number].reliability = valueCheck(0, 100);
 
     printf("Energy demand (0 - 100): \n");
-    tab[number].energydemand = valueCheck();
+    tab[number].energydemand = valueCheck(0, 100);
 
     printf("Invention status: \n");
     printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
