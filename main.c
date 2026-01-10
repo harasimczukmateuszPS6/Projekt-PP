@@ -165,6 +165,15 @@ void invDel(struct invention tab[], int *number) {
     printf("\nData removed successfully!\n\n");
 }
 
+void optionsList() {
+    printf("1 - Register new invention.\n");
+    printf("2 - Show the list.\n");
+    printf("3 - Search for invention.\n");
+    printf("4 - Modify invention data.\n");
+    printf("5 - Remove invention data.\n");
+    printf("6 - Show this again.\n");
+    printf("0 - Terminate program.\n");
+}
 
 int main()
 {
@@ -178,12 +187,7 @@ int main()
         printf("\nTERMINATING...");
         return 0;
     }
-    printf("1 - Register new invention.\n");
-    printf("2 - Show the list.\n");
-    printf("3 - Search for invention.\n");
-    printf("4 - Modify invention data.\n");
-    printf("5 - Remove invention data.\n");
-    printf("0 - Terminate program.\n");
+    optionsList();
 
     struct invention tab[MAX];
     int number = 0;
@@ -227,6 +231,11 @@ int main()
             case 5: {
                 printf("Enter invention name:\n> ");
                 invDel(tab, &number);
+                break;
+            }
+
+            case 6: {
+                optionsList();
                 break;
             }
 
