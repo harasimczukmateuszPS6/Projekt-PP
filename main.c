@@ -154,6 +154,10 @@ void invDel(struct invention tab[], int *number) {
         printf("Invention not found!\n");
         return;
     }
+    if(tab[rNumber].status == 4 || tab[rNumber].status == 5) {
+        printf("Failed to remove data!\n");
+        return;
+    }
     for(int i = rNumber; i < *number - 1; i++) {
         tab[i] = tab[i + 1];
     }
