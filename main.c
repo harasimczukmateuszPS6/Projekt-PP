@@ -46,16 +46,6 @@ int nameCheck(char *name) {
     return 1;
 }
 
-int typeCheck() {
-    int n;
-    while(1) {
-        printf("> ");
-        scanf("%d", &n);
-        if(n == 1 || n == 2 || n == 3 || n == 4 || n == 5)
-            return n;
-        printf("Invalid entry! Try again: \n");
-    }
-}
 
 void enterName(char *name) {
     while(1) {
@@ -69,13 +59,14 @@ void enterName(char *name) {
 
 int valueCheck(int min, int max) {
     int n;
-    while(1) {
-        printf("> ");
-        scanf("%d", &n);
-        if(n >= min && n <= max)
-            return n;
-        printf("Invalid value! Try again: \n");
+    printf("> ");
+    while(scanf("%d", &n) != 1 || n < min || n > max) {
+            printf("Invalid value! Try again: \n> ");
+            while (getchar() != '\n');
     }
+    while (getchar() != '\n');
+    return n;
+
 }
 
 void newInvention(struct invention tab[], int *number) {
@@ -89,7 +80,7 @@ void newInvention(struct invention tab[], int *number) {
 
     printf("Invention type: \n");
     printf("1 - mechanical\n2 - chemical\n3 - energetic\n4 - quantum\n5 - steam\n\n");
-    tab[*number].type = typeCheck();
+    tab[*number].type = valueCheck(1, 5);
 
     printf("Reliability level (0 - 100): \n");
     tab[*number].reliability = valueCheck(0, 100);
@@ -99,7 +90,7 @@ void newInvention(struct invention tab[], int *number) {
 
     printf("Invention status: \n");
     printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
-    tab[*number].status = typeCheck();
+    tab[*number].status = valueCheck(1, 5);
 
 
     (*number)++;
@@ -142,7 +133,7 @@ void invMod(struct invention tab[], int number) {
 
     printf("Invention type: \n");
     printf("1 - mechanical\n2 - chemical\n3 - energetic\n4 - quantum\n5 - steam\n\n");
-    tab[number].type = typeCheck();
+    tab[number].type = valueCheck(1, 5);
 
     printf("Reliability level (0 - 100): \n");
     tab[number].reliability = valueCheck(0, 100);
@@ -152,7 +143,7 @@ void invMod(struct invention tab[], int number) {
 
     printf("Invention status: \n");
     printf("1 - prototype\n2 - testing\n3 - admissible\n4 - forbidden\n5 - unstable\n\n");
-    tab[number].status = typeCheck();
+    tab[number].status = valueCheck(1, 5);
 
     printf("\nData modified successfully!\n\n");
 }
