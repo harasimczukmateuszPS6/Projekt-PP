@@ -120,7 +120,15 @@ void invPrint(struct invention tab[], int number) {
 
 }
 
+int invCompare(const void *a, const void *b) {
+    const struct invention *x = (const struct invention*)a;
+    const struct invention *y = (const struct invention*)b;
+    return strcmp(x->name, y->name);
+}
+
 void invList(struct invention tab[], int number) {
+
+    qsort(tab, number, sizeof(struct invention), invCompare);
 
     printf("\nALL REGISTERED INVENTIONS:\n\n");
     for (int i = 0; i < number; i++) {
