@@ -183,6 +183,27 @@ void optionsList() {
     printf("0 - Terminate program.\n");
 }
 
+void saveFile(struct invention tab[], int number) {
+    FILE *f = fopen("inventions.txt", "w");
+    if (!f) {
+        printf("Cannot open file for writing!\n");
+        return;
+    }
+
+    for (int i = 0; i < number; i++) {
+        fprintf(f, "%s;%d;%d;%d;%d\n",
+                tab[i].name,
+                tab[i].type,
+                tab[i].reliability,
+                tab[i].energydemand,
+                tab[i].status);
+    }
+
+    fclose(f);
+    printf("Data saved to file.\n");
+}
+
+
 int main()
 {
     char proceed;
