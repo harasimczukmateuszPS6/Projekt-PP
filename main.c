@@ -179,7 +179,8 @@ void optionsList() {
     printf("3 - Search for invention.\n");
     printf("4 - Modify invention data.\n");
     printf("5 - Remove invention data.\n");
-    printf("6 - Show this again.\n");
+    printf("6 - Save list to a file.\n");
+    printf("7 - Show this again.\n");
     printf("0 - Terminate program.\n");
 }
 
@@ -191,7 +192,8 @@ void saveFile(struct invention tab[], int number) {
     }
 
     for (int i = 0; i < number; i++) {
-        fprintf(f, "%s;%d;%d;%d;%d\n",
+        fprintf(f, "%d. %s;%d;%d;%d;%d\n",
+                number,
                 tab[i].name,
                 tab[i].type,
                 tab[i].reliability,
@@ -200,7 +202,7 @@ void saveFile(struct invention tab[], int number) {
     }
 
     fclose(f);
-    printf("Data saved to file.\n");
+    printf("\nData saved to file.\n");
 }
 
 
@@ -264,6 +266,11 @@ int main()
             }
 
             case 6: {
+                saveFile(tab, number);
+                break;
+            }
+
+            case 7: {
                 optionsList();
                 break;
             }
