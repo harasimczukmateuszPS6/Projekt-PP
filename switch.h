@@ -54,6 +54,11 @@ int optionMenu() {
                 }
 
                 case 7: {
+                    loadFile(tab, &number);
+                    break;
+                }
+
+                case 8: {
                     optionsList();
                     break;
                 }

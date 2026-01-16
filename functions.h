@@ -144,20 +144,20 @@ void optionsList() {
     printf("4 - Modify invention data.\n");
     printf("5 - Remove invention data.\n");
     printf("6 - Save list to a file.\n");
-    printf("7 - Show this again.\n");
+    printf("7 - Load list from a file.\n");
+    printf("8 - Show this again.\n");
     printf("0 - Terminate program.\n");
 }
 
 void saveFile(struct invention tab[], int number) {
     FILE *f = fopen("inventions.txt", "w");
     if (!f) {
-        printf("Cannot open file for writing!\n");
+        printf("Cannot create a file!\n");
         return;
     }
 
     for (int i = 0; i < number; i++) {
-        fprintf(f, "%d. %s;%d;%d;%d;%d\n",
-                number,
+        fprintf(f, "%s;%d;%d;%d;%d\n",
                 tab[i].name,
                 tab[i].type,
                 tab[i].reliability,
@@ -169,4 +169,26 @@ void saveFile(struct invention tab[], int number) {
     printf("\nData saved to file.\n");
 }
 
+void loadFile(struct invention tab[], int *number) {
+    FILE *f = fopen("inventions.txt", "r");
+    if (!f) {
+        printf("No file found.\n");
+        return;
+    }
+
+    *number = 0;
+
+    while (*number < MAX &&
+           fscanf(f, " %100[^;];%d;%d;%d;%d",
+                  tab[*number].name,
+                  &tab[*number].type,
+                  &tab[*number].reliability,
+                  &tab[*number].energydemand,
+                  &tab[*number].status) == 5) {
+        (*number)++;
+    }
+
+    fclose(f);
+    printf("Data loaded from file.\n");
+}
 
